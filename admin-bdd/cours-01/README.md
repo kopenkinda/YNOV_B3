@@ -24,7 +24,7 @@ primaire (en gras dans le schéma suivant) et les contraintes suivantes :
 ```
 
 Fichier: `queries/creParc.sql` <br />
-Resultat: <br />
+Résultat: <br />
 <img src="./assets/img01.png"/><br />
 <img src="./assets/img02.png"/>
 
@@ -37,7 +37,7 @@ Vous pouvez utiliser easyphp pour visualiser le schéma.
 ```
 
 Fichier: `queries/descParc.sql` <br />
-Resultat: <br />
+Résultat: <br />
 <img src="./assets/img11.png"/><br />
 <img src="./assets/img12.png"/><br />
 <img src="./assets/img13.png"/><br />
@@ -53,7 +53,7 @@ puis celui de la création des tables à nouveau.
 ```
 
 Fichier: `queries/dropParc.sql` <br />
-Resultat: <br />
+Résultat: <br />
 <img src="./assets/img21.png"/>
 
 ## Exercice 4: Interrogation des données
@@ -67,7 +67,7 @@ ces tables. Penser à modifier le nom des colonnes.
 ```
 
 Fichier: `queries/requetes-step1.sql` <br />
-Resultat: <br />
+Résultat: <br />
 <img src="./assets/img30.png"/><br />
 <img src="./assets/img31.png"/><br />
 <img src="./assets/img32.png"/><br />
@@ -90,5 +90,5 @@ suivantes :
 ```
 
 Fichier: `queries/requetes-step2.sql` <br />
-Resultat: <br />
+Résultat: <br />
 <img src="./assets/img30.png"/><br />
