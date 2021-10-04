@@ -8,7 +8,7 @@ Realise par:
 <!-- TODO: EDIT -->
 
 ```
-Pour voir les images, open preview...
+Si vous n'avez pas de logiciel pour voir les previews des fichiers markdown -> https://github.com/kopenkinda/YNOV_B3/tree/main/admin-bdd/cours-01#readme
 ```
 
 ## Exercice 1: Creation des tables
