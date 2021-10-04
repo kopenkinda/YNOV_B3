@@ -58,7 +58,7 @@ Résultat: <br />
 
 ## Exercice 4: Interrogation des données
 
-### Etape 1
+### Étape 1
 
 ```md
 Écrire le script créaDynamique.sql permettant de créer les tables Softs et PCSeuls suivantes (en
@@ -73,7 +73,7 @@ Résultat: <br />
 <img src="./assets/img32.png"/><br />
 <img src="./assets/img33.png"/>
 
-### Etape 2
+### Étape 2
 
 ```md
 Écrire le script requêtes.sql permettant d’extraire, àl’aide d’instructions SELECT, les données
@@ -91,4 +91,29 @@ suivantes :
 
 Fichier: `queries/requetes-step2.sql` <br />
 Résultat: <br />
-<img src="./assets/img30.png"/><br />
+<img src="./assets/img34.png"/><br />
+<img src="./assets/img35.png"/><br />
+<img src="./assets/img36.png"/><br />
+<img src="./assets/img37.png"/><br />
+<img src="./assets/img38.png"/><br />
+<img src="./assets/img39.png"/><br />
+<img src="./assets/img310.png"/><br />
+<img src="./assets/img311.png"/>
+
+### Étape 3
+
+```md
+Pour chaque poste, le nombre de logiciels installés (en utilisant la table Installer).
+
+- Pour chaque salle, le nombre de postes (à partir de la table Poste).
+- Pour chaque logiciel, le nombre d’installations sur des postes différents.
+- Moyenne des prix des logiciels 'UNIX'.
+- Plus récente date d’achat d’un logiciel.
+- Numéros des postes hébergeant 2 logiciels.
+- Nombre de postes hébergeant 2 logiciels (utiliser la requête précédente en faisant un SELECT dans la
+  clause FROM).
+```
+
+Fichier: `queries/requetes-step3.sql` <br />
+Résultat: <br />
+<img src="./assets/img312.png"/><br />
