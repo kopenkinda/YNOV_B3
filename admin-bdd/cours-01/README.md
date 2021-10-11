@@ -55,6 +55,7 @@ puis celui de la création des tables à nouveau.
 Fichier: `queries/dropParc.sql` <br />
 Résultat: <br />
 <img src="./assets/img3_1.png"/>
+<img src="./assets/img3_2.png"/>
 
 ## Exercice 4: Interrogation des données
 
@@ -212,3 +213,11 @@ Pour mettre à jour automatiquement les colonnes rajoutées :
 
 Fichier: `queries/modifSynchronisees.sql` <br />
 Résultat: <br />
+**28**
+<img src="./assets/img4_28.png"/><br />
+**29**
+<img src="./assets/img4_29.png"/><br />
+**30**
+<img src="./assets/img4_30.png"/><br />
+**31**
+<img src="./assets/img4_31.png"/><br />
