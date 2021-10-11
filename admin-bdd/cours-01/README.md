@@ -71,8 +71,7 @@ Fichier: `queries/requetes-step1.sql` <br />
 Résultat: <br />
 <img src="./assets/img4_0_1.png"/><br />
 <img src="./assets/img4_0_2.png"/><br />
-<img src="./assets/img4_0_3.png"/><br />
-<img src="./assets/img4_0_4.png"/>
+<img src="./assets/img4_0_3.png"/>
 
 ### Étape 2: Requêtes monotables
 
