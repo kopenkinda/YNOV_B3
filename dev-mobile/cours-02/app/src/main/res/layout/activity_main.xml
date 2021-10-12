@@ -36,6 +36,5 @@
         app:icon="?android:attr/actionModeWebSearchDrawable"
         app:iconPadding="4dp"
         app:iconTint="#FFFFFF"
-        android:onClick="onClickXML"
         />
 </LinearLayout>
