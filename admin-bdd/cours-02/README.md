@@ -1,8 +1,10 @@
 # TP 02
 
-## 3. Paramétrage dynamique duserveur
+## Partie I
 
-### a. Changement pour la session
+### 3. Paramétrage dynamique duserveur
+
+#### a. Changement pour la session
 
 ```sql
 -- Changer la valeur par défaut.
@@ -15,7 +17,7 @@ SHOW SESSION VARIABLES LIKE 'sort_buffer_size';
 
 <img src="./assets/img_3_a.png"/>
 
-### b.Changement global
+#### b.Changement global
 
 ```sql
 -- Changer la valeur par défaut.
@@ -44,9 +46,9 @@ SHOW SESSION VARIABLES LIKE 'sort_buffer_size';
 
 <p>La commande ne fonctionne pas car sur la version que nous utilisons, MySql ne prend pas en compte la commande PERSIST</p>
 
-## 5. Visualisation de la configuration
+### 5. Visualisation de la configuration
 
-### a. Nombre de connexions simultanées
+#### a. Nombre de connexions simultanées
 
 ```sql
 -- Modifiez le nombre de connexion par défaut (4 par exemple)
@@ -57,14 +59,14 @@ SET GLOBAL max_connections = 4;
 
 <img src="./assets/img_5_a.png" /> <br />
 
-### b. Caches de table
+#### b. Caches de table
 
 ```sql
 -- Modifier légèrementles valeurs de cache pour les tables
 SET GLOBAL table_open_cache = 15;
 ```
 
-### c. Cache de threads
+#### c. Cache de threads
 
 ```sql
 -- Changez la valeur par défaut
@@ -76,3 +78,17 @@ SHOW GLOBAL VARIABLES LIKE 'thread_cache_size';
 
 <img src="./assets/img_5_c.png" /> <br />
 En changeant un peu la valeur par défaut cela ne s'enregistre pas dans le fichier de conf
+
+### 7. Autres paramètres
+
+```sql
+-- Vérifiez la valeur par défaut: innodb_buffer_pool_instances
+SHOW GLOBAL VARIABLES LIKE 'innodb_buffer_pool_instances';
+-- Vérifiez les valeurs par défaut: innodb_buffer_pool_dump_at_shutdown,innodb_buffer_pool_load_at_startup
+SELECT * FROM GLOBAL_VARIABLES WHERE VARIABLE_NAME LIKE 'innodb_buffer_pool%';
+```
+
+<img src="./assets/img_7_a.png" />
+<img src="./assets/img_7_a1.png" /><br />
+
+## Partie II
