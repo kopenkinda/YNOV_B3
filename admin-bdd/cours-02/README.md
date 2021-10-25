@@ -1,5 +1,8 @@
 # TP 02
 
+- Arnal Theo
+- Dmitrii Kopenkin
+
 ## Partie I
 
 ### 3. Paramétrage dynamique du serveur
