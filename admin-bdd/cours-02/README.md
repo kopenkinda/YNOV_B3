@@ -107,9 +107,9 @@ FLUSH PRIVILEGES;
 --    Consultation, modification, ajout, suppression pour toutes lestables
 --    Exécution des procédures etfonctions
 --    Visualisation desvues
---    Ne peut pas déléguer ses droits à un autre utilisateur (ce n’est pas un utilisateurhumain)
-CREATE USER 'admin_interface'@'%';
-GRANT ALTER, SELECT, DELETE, CREATE, EXECUTE, INSERT, TRIGGER ON test.* TO 'admin_interface'@'%' IDENTIFIED  BY 'password';
+--    Ne peut pas déléguer ses droits à un autre utilisateur (ce n’est pas un utilisateur humain)
+CREATE USER 'admin_interface'@'%' IDENTIFIED  BY 'password';
+GRANT ALTER, SELECT, DELETE, EXECUTE, INSERT, TRIGGER ON test.* TO 'admin_interface'@'%';
 FLUSH PRIVILEGES;
 -- Utilisateur « cust_interface»
 --    C’est l’utilisateur frontoffice en lien avec leclient.
@@ -117,10 +117,10 @@ FLUSH PRIVILEGES;
 --    Droits debase
 --    Droit de visualiser tout le contenu des tables: deux tables de votre choix. GRANT SELECT sur ces tables
 CREATE USER 'cust_interface'@'%' IDENTIFIED  BY 'password_cust';
-GRANT SELECT ON db1.* TO 'cust_interface'@'%';
-GRANT SELECT ON db2.* TO 'cust_interface'@'%';
+GRANT SELECT ON test.tab1 TO 'cust_interface'@'%';
+GRANT SELECT ON test.tab2 TO 'cust_interface'@'%';
 --    Droit d’insérer et de modifier des données de client dans la table de votre choix.GRANT INSERT et GRANT UPDATE sur cette table
-GRANT INSERT, UPDATE ON db2.* TO 'cust_interface'@'%';
+GRANT INSERT, UPDATE ON test.tab1 TO 'cust_interface'@'%';
 FLUSH PRIVILEGES;
 ```
 
@@ -128,11 +128,20 @@ FLUSH PRIVILEGES;
 
 ```sql
 -- Une requête permettant de montrer que admin_interface a le privilège SELECT sur une des tables au niveau de laquelle vous avez mis des restrictions à la question precedente
--- Une requête permettant de montrer que admin_interface n’a pas le privilège CREATE TABLE dans labase
--- Une requête permettant de montrer que admin_interface n’a pas le privilège CREATEDATABASE
+-- Une requête permettant de montrer que admin_interface n’a pas le privilège CREATE TABLE dans la base
+-- Une requête permettant de montrer que admin_interface n’a pas le privilège CREATE DATABASE
+SHOW GRANTS FOR 'admin_interface'@'%'; -- Voir ( Img1 )
+
 -- Une requête permettant de montrer que cust_interface a le privilège SELECT sur une des tables au niveau de laquelle vous avez mis des restrictions à la question précédente
 -- Une requête permettant de montrer que cust_interface n’a pas le privilège SELECT sur une des tables au niveau de laquelle vous avez mis des restrictions à la question précédente
 -- Une requête permettant de montrer que cust_interface a le privilège INSERT sur latable sur une des tables au niveau de laquelle vous avez mis des restrictions à la question précédente
 -- Une requête permettant de montrer que cust_interface n’a pas le privilège CREATE TABLE dans labase
 -- Une requête permettant de montrer que cust_interface n’a pas le privilège CREATEDATABASE
+SHOW GRANTS FOR 'cust_interface'@'%'; -- Voir ( Img2 )
 ```
+
+**Img1**
+<img src="./assets/img_ii_1.png"/> <br />
+
+**Img2**
+<img src="./assets/img_ii_2.png"/> <br />
