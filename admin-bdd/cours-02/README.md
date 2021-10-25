@@ -2,7 +2,7 @@
 
 ## Partie I
 
-### 3. Paramétrage dynamique duserveur
+### 3. Paramétrage dynamique du serveur
 
 #### a. Changement pour la session
 
