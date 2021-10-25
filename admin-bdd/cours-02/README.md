@@ -88,7 +88,8 @@ SHOW GLOBAL VARIABLES LIKE 'innodb_buffer_pool_instances';
 SELECT * FROM GLOBAL_VARIABLES WHERE VARIABLE_NAME LIKE 'innodb_buffer_pool%';
 ```
 
-<img src="./assets/img_7_a.png" />
+<img src="./assets/img_7_a.png" /><br />
+(Ma verison de mysql ne supporte pas cettee variable)
 <img src="./assets/img_7_a1.png" /><br />
 
 ## Partie II
