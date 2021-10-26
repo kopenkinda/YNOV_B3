@@ -17,12 +17,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String path = Environment.getExternalStorageDirectory().getPath() + "/Download/video.mp4";
-        Intent action = new Intent(Intent.ACTION_VIEW);
-        action.setDataAndType(Uri.parse(path), "video/mp4");
+//        String path = Environment.getExternalStorageDirectory().getPath() + "/Download/video.mp4";
+//        playVideo(path);
+    }
 
+
+    private void playVideo(String url) {
+        Intent action = new Intent(Intent.ACTION_VIEW);
+        action.setDataAndType(Uri.parse(url), "video/mp4");
         if (action.resolveActivity(getPackageManager()) != null) {
             startActivity(action);
         }
+    }
+
+    private void playOnlineVideo(String url) {
+
     }
 }
