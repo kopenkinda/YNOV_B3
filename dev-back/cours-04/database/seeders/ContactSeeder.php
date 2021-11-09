@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Amongus;
 use Illuminate\Database\Seeder;
 
-class AmongusSeeder extends Seeder
+class ContactSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +13,6 @@ class AmongusSeeder extends Seeder
      */
     public function run()
     {
-        Amongus::factory()->count(50000)->create();
+        //
     }
 }

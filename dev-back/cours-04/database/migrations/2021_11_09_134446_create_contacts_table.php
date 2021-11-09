@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAmongusesTable extends Migration
+class CreateContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateAmongusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('amonguses', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->boolean('isImpostor');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class CreateAmongusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('amonguses');
+        Schema::dropIfExists('contacts');
     }
 }

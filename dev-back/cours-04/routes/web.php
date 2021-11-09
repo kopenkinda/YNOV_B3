@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\PhotoController;
-use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index']);
-Route::resource('photos', PhotoController::class);
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+  return view('welcome');
+});
