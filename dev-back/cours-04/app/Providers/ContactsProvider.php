@@ -16,7 +16,7 @@ class ContactsProvider extends ServiceProvider
      */
     public function register()
     {
-        $anon = (bool)env('ANON', false);
+        $anon = config('contacts.anon_mode');
         $deps = [ContactsRepositoryInterface::class];
         if ($anon) {
             array_push($deps, ContactsAnonRepository::class);
