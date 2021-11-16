@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "717730458565",
+    "firebase_url": "https://cours-07-dev-mobile-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "cours-07-dev-mobile",
+    "storage_bucket": "cours-07-dev-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:717730458565:android:c2120a3c9f46e59a59f9ac",
+        "android_client_info": {
+          "package_name": "com.example.cours07"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "717730458565-5bi4td33ujtvk1ggo1h8nhpd3uutr87r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnJsRyJBP-c_K-O54f9Hdt2PE7EV-Yzmc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "717730458565-5bi4td33ujtvk1ggo1h8nhpd3uutr87r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
