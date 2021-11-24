@@ -1,0 +1,41 @@
+# TP Uber-like
+
+## Resto en ligne
+
+Vous devez mettre en place la gestion des livraisons d'un restaurant
+
+> TP à faire à 2 max
+
+### API client : 8 points
+
+-   [ ] ajouter des produits au panier /api/client/product/
+-   [ ] saisir adresse + numéro de tel /api/client/profile
+-   [ ] valider la commande /api/client/order
+-   [ ] consulter l'état de sa commande seller_accept/seller_refuse/seller_ready/shipping_in_progress/shipped
+
+### Api resto : 6 points
+
+-   [ ] voir les commandes passées par les clients /api/seller/order
+-   [ ] traiter une commande : accept/refuse/ready
+
+### Api livreur : 6 points
+
+-   [ ] voir les commandes à livrer /api/shipper/order
+-   [ ] traiter une commande : accept/refuse/shipped
+
+### Infos de déploiement(-2pts):
+
+-   [ ] Nom de domaine : my-uber.test
+-   [ ] BD : my-uber
+
+### Livrables :
+
+-   [ ] zip des sources
+-   [ ] readme d'installation (-2pts)
+-   [ ] Export script postman (-8pts)
+-   [ ] Bonus livreur (+4pts)
+-   [ ] afficher les coordonnées GPS de l'adresse
+
+### Bonus client (+4pts)
+
+-   [ ] suivre le GPS du livreur
