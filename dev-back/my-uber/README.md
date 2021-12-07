@@ -1,6 +1,6 @@
 # TP Uber-like
 
-## Resto en ligne
+## Resto en ligne : Sujet
 
 Vous devez mettre en place la gestion des livraisons d'un restaurant
 
@@ -39,3 +39,11 @@ Vous devez mettre en place la gestion des livraisons d'un restaurant
 ### Bonus client (+4pts)
 
 -   [ ] suivre le GPS du livreur
+
+## Resto en ligne : Installation
+
+-   `cp .env.example .env`
+-   Modifier les variables DB_USERNAME, DB_PASSWORD dans .env
+-   `php artisan migrate:fresh`
+-   `php artisan db:seed`
+-   `php artisan serve`
