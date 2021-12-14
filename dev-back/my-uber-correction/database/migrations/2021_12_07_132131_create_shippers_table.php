@@ -15,6 +15,8 @@ class CreateShippersTable extends Migration
     {
         Schema::create('shippers', function (Blueprint $table) {
             $table->id();
+            $table->double('lat');
+            $table->double('long');
             $table->timestamps();
         });
     }

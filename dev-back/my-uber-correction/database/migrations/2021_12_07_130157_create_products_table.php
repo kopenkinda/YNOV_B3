@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('price');
-            $table->integer('seller_id');
+            $table->integer('seller_id')->nullable();
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Shipper;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -102,5 +103,19 @@ class ClientController extends Controller
             return response(['status' => 'cart_empty'], 200);
         }
         return response()->json($cart->status, 200);
+    }
+
+    public function get_order_position($client_id)
+    {
+        $client = Client::findOrFail($client_id);
+        $cart = $client->cart;
+        if ($cart == null) {
+            return response(['status' => 'cart_empty'], 200);
+        }
+        $shipper = Shipper::findOrFail($cart->shipper_id);
+        return response()->json([
+            'lat' => $shipper->lat,
+            'long' => $shipper->long
+        ], 200);
     }
 }

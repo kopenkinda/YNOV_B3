@@ -9,6 +9,8 @@ class Shipper extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['lat', 'long'];
+
     public function orders()
     {
         return $this->hasMany(Order::class);

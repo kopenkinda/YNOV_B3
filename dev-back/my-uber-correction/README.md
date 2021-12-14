@@ -33,7 +33,7 @@ Vous devez mettre en place la gestion des livraisons d'un restaurant
 -   [ ] zip des sources
 -   [ ] readme d'installation (-2pts)
 -   [ ] Export script postman (-8pts)
--   [ ] Bonus livreur (+4pts)
+-   [ ] Bonus suivre le livreur (+4pts)
 -   [ ] afficher les coordonnées GPS de l'adresse
 
 ### Bonus client (+4pts)

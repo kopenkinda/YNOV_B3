@@ -89,4 +89,17 @@ class ShipperController extends Controller
                 return response('Invalid action', 400);
         }
     }
+
+    public function update_position(Request $request, $shipper_id)
+    {
+        $lat = $request->query('lat');
+        $long = $request->query('long');
+        $shipper = Shipper::findOrFail($shipper_id);
+        $shipper->update(['lat' => $lat, 'long' => $long]);
+        return response([
+            'message' => 'Updated position',
+            'lat' => $lat,
+            'long' => $long
+        ], 200);
+    }
 }
