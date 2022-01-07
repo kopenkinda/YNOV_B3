@@ -3,32 +3,28 @@ const BASE_URL = 'http://localhost:8000/api';
 const API = {};
 export default API;
 import { token, loggedIn, user } from './store/auth';
+import sendNotification from './store/notifications';
 
 axios.defaults.baseURL = BASE_URL;
-
-function withAuthHeaders() {
-  return {
-    headers: {
-      authorization: `Bearer ${token.value}`,
-    },
-  };
-}
 
 function authorized(reqFn) {
   return async (...parameters) => {
     let result = null;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token.value}`;
     try {
       result = await reqFn(...parameters);
-      return result;
     } catch (e) {
       if (e.response.status === 401) {
         token.value = '';
         user.value = null;
         loggedIn.value = false;
-        throw e;
+        return sendNotification('error', 'You are not logged in');
       }
-      return result;
+      throw e;
     }
+
+    axios.defaults.headers.common['Authorization'] = '';
+    return result;
   };
 }
 
@@ -51,7 +47,6 @@ API.register = async function (email, password, password_confirmation) {
     name: `User #${Date.now().toString().slice(-6, -1)}`,
   };
   const { data } = await axios.post('/auth/register', payload);
-  console.log(data, payload);
   return data;
 };
 
@@ -60,17 +55,57 @@ API.getQuizzes = async function () {
   return data;
 };
 
-API.publishQuiz = authorized(async function (quiz) {
-  const { data } = await axios.post(`/quiz/${quiz.id}/publish`, null, withAuthHeaders());
+API.getQuiz = async function (id) {
+  const { data } = await axios.get(`/quiz/${id}`);
+  return data;
+};
+
+API.addQuiz = authorized(async function (quiz) {
+  const { data } = await axios.post('/quiz', quiz);
   return data;
 });
 
-API.unpublishQuiz = authorized(async function (quiz) {
-  const { data } = await axios.post(`/quiz/${quiz.id}/unpublish`, null, withAuthHeaders());
+API.editQuiz = authorized(async function (quizId, quiz) {
+  const { data } = await axios.put(`/quiz/${quizId}`, quiz);
   return data;
 });
 
 API.removeQuiz = authorized(async function (quiz) {
-  const { data } = await axios.delete(`/quiz/${quiz.id}`, withAuthHeaders());
+  const { data } = await axios.delete(`/quiz/${quiz.id}`);
   return data;
 });
+
+API.publishQuiz = authorized(async function (quiz) {
+  const { data } = await axios.post(`/quiz/${quiz.id}/publish`);
+  return data;
+});
+
+API.unpublishQuiz = authorized(async function (quiz) {
+  const { data } = await axios.post(`/quiz/${quiz.id}/unpublish`);
+  return data;
+});
+
+API.getQuestions = async function (quizId) {
+  const { data } = await axios.get(`/quiz/${quizId}/questions`);
+  return data;
+};
+
+API.getChoices = async function (questionId) {
+  const { data } = await axios.get(`/question/${questionId}/choices`);
+  return data;
+};
+
+API.submitQuiz = authorized(async function (quizId, answers) {
+  const { data } = await axios.post(`/score`, { answers, quiz_id: quizId });
+  return data;
+});
+
+API.getScores = async function () {
+  const { data } = await axios.get('/score');
+  return data;
+};
+
+API.getUser = async function (userId) {
+  const { data } = await axios.get('/user/' + userId);
+  return data;
+};

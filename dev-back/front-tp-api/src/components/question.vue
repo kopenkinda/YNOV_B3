@@ -5,6 +5,10 @@ export default {
       type: Object,
       required: true,
     },
+    onremove: {
+      type: Function,
+      required: true,
+    },
   },
   setup(props) {
     function addChoice() {
@@ -24,11 +28,15 @@ export default {
       }
       props.question.choices.splice(idx, 1);
     }
+    function removeQuestion() {
+      props.onremove(props.question.id);
+    }
     return {
       question: props.question,
       addChoice,
       selectChoice,
       removeChoice,
+      removeQuestion,
     };
   },
 };
@@ -39,11 +47,14 @@ export default {
     <div class="card-body">
       <div class="form-group mb-2">
         <label>Label</label>
-        <input type="text" class="form-control" v-model="question.label" />
+        <div class="d-flex">
+          <input type="text" class="form-control" v-model="question.label" placeholder="Enter question label" />
+          <button class="btn btn-danger ms-2" @click="removeQuestion"><i class="far fa-trash-alt"></i></button>
+        </div>
       </div>
       <div class="form-group mb-2">
         <label>Earnings</label>
-        <input type="number" class="form-control" v-model="question.earnings" />
+        <input min="0" type="number" class="form-control" v-model="question.earnings" />
       </div>
       <div class="form-group">
         <label>Choices</label>
@@ -53,9 +64,15 @@ export default {
             class="form-control me-2"
             :class="question.answer == choice.id ? 'selected-choice' : ''"
             v-model="choice.label"
+            placeholder="Enter choice label"
           />
-          <button class="btn btn-info me-2" @click="selectChoice(choice.id)">S</button>
-          <button class="btn btn-danger me" @click="removeChoice(choice.id)">D</button>
+          <button class="btn btn-info me-2" @click="selectChoice(choice.id)">
+            <i class="far fa-check-square" v-if="choice.id === question.answer"></i>
+            <i class="far fa-square" v-else></i>
+          </button>
+          <button class="btn btn-danger me" @click="removeChoice(choice.id)">
+            <div class="far fa-trash-alt"></div>
+          </button>
         </div>
         <button class="btn btn-secondary text-center w-100 mt-2" @click="addChoice">Add a choice</button>
       </div>

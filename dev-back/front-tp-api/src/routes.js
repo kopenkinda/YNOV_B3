@@ -32,7 +32,17 @@ const routes = [
     component: () => import('./pages/admin/EditQuiz.vue'),
     meta: { requiresAuth: true },
   },
-
+  {
+    path: '/take-quiz/:quizId',
+    name: 'TakeQuiz',
+    component: () => import('./pages/TakeQuiz.vue'),
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/scores',
+    name: 'Scores',
+    component: () => import('./pages/Scores.vue'),
+  },
   // ! Should be last
   {
     path: '/:catchAll(.*)',

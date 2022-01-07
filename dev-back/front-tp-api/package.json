@@ -5,7 +5,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "server": "node mockServer.js"
+    "server": "node mockServer.js",
+    "server:debug": "node --inspect mockServer.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",

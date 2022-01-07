@@ -53,7 +53,7 @@ export default {
 </script>
 
 <template>
-  <div class="card">
+  <div class="card mb-2">
     <div class="card-body">
       <div class="card-text d-flex align-items-center">
         <b class="me-auto">
