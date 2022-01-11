@@ -1,0 +1,17 @@
+<div class="container">
+  <p>Room id: {{ id }}</p>
+  <p *ngIf="guest.trim() !== ''">Guest: {{ guest }}</p>
+  <p>
+    <ew-angular-fridge
+      [isAvailable]="isAvailable"
+      (takeABottleEvent)="onBottleCountChange($event)"
+    ></ew-angular-fridge>
+  </p>
+  <input type="text" [(ngModel)]="guest" />
+
+  <button (click)="call()" [disabled]="isDoNotDisturb">Knock-knock</button>
+
+  <button (click)="isDoNotDisturb = !isDoNotDisturb">
+    Switch do not disturb
+  </button>
+</div>
