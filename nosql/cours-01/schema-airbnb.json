@@ -1,0 +1,72 @@
+[
+  {
+    "type": "hotel",
+    "name": "Marina Bay Sands",
+    "address": "1 Marina Boulevard, #01-01, Singapore",
+    "pricePerNight": 369.99,
+    "availableRooms": 213,
+    "features": ["gym", "spa", "pool", "wifi", "parking", "restaurant"],
+    "image": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9b3b3d6b3f7b6f8f9f9b9b9b9b9b9b9&auto=format&fit=crop&w=1050&q=80",
+    "location": {
+      "type": "Point",
+      "coordinates": [103.85909, 1.28984]
+    },
+    "nearbySights": [
+      {
+        "name": "Singapore Flyer",
+        "location": {
+          "type": "Point",
+          "coordinates": [103.85909, 1.28984]
+        }
+      }
+    ],
+    "reviews": [
+      {
+        "author": "John",
+        "rating": "5",
+        "comment": "Great hotel"
+      },
+      {
+        "author": "Jane",
+        "rating": "4",
+        "comment": "Good hotel"
+      }
+    ]
+  },
+  {
+    "type": "house",
+    "address": "2 Marina Boulevard, #01-01, Singapore",
+    "owner": {
+      "name": "John",
+      "email": "john@landlord.com",
+      "phone": "12345678"
+    },
+    "pricePerNight": 126.99,
+    "features": ["pool", "gym", "wifi"],
+    "location": {
+      "type": "Point",
+      "coordinates": [103.85909, 1.28984]
+    },
+    "nearbySights": [
+      {
+        "name": "Singapore Flyer",
+        "location": {
+          "type": "Point",
+          "coordinates": [103.85909, 1.28984]
+        }
+      }
+    ],
+    "reviews": [
+      {
+        "author": "John",
+        "rating": "5",
+        "comment": "Great house"
+      },
+      {
+        "author": "Jane",
+        "rating": "4",
+        "comment": "Good house"
+      }
+    ]
+  }
+]
