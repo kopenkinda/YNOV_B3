@@ -1,7 +1,6 @@
 version: '3.1'
 
 services:
-
   wordpress:
     image: wordpress
     restart: always
@@ -13,7 +12,7 @@ services:
       WORDPRESS_DB_PASSWORD: passwordb2
       WORDPRESS_DB_NAME: dbb2
     volumes:
-      - wordpress:/var/www/html
+      - /home/dk/Documents/studies/B3/mentor-stuff/b2-php/wordpress:/var/www/html
 
   db:
     image: mysql:5.7
