@@ -6,6 +6,7 @@ import { IRoom } from '../room/room.interface';
   providedIn: 'root',
 })
 export class RoomService {
+  private lastId = 4;
   private _rooms: BehaviorSubject<IRoom[]> = new BehaviorSubject([
     { id: 1 },
     { id: 2 },
@@ -17,19 +18,12 @@ export class RoomService {
     return this._rooms;
   }
 
-  getRooms(): BehaviorSubject<IRoom[]> {
-    return this._rooms;
-  }
-
   deleteRoom(id: number): void {
     this._rooms.next(this._rooms.getValue().filter((room) => room.id !== id));
   }
 
-  addRoom(room: IRoom): void {
-    const found = this._rooms.getValue().find((r) => room.id === r.id);
-    if (!found) {
-      this._rooms.next([...this._rooms.getValue(), room]);
-    }
+  addRoom(): void {
+    this._rooms.next([...this._rooms.getValue(), { id: ++this.lastId }]);
   }
 
   constructor() {}

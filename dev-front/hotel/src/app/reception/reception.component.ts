@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { map, Subscription } from 'rxjs';
 import { RoomService } from '../shared/room.service';
 
 @Component({
@@ -6,14 +7,21 @@ import { RoomService } from '../shared/room.service';
   templateUrl: './reception.component.html',
   styleUrls: ['./reception.component.scss'],
 })
-export class ReceptionComponent implements OnInit {
-  constructor(private roomService: RoomService) {}
-
+export class ReceptionComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
+  totalRooms: number = 0;
+  private roomsSubscriber: Subscription;
 
-  newRoomId: string;
+  constructor(private roomService: RoomService) {
+    this.roomsSubscriber = this.roomService.rooms$
+      .pipe(map((x) => x.length))
+      .subscribe((x) => (this.totalRooms = x));
+  }
+  ngOnDestroy(): void {
+    this.roomsSubscriber.unsubscribe();
+  }
+
   addNewRoom() {
-    this.roomService.addRoom({ id: parseInt(this.newRoomId, 10) });
-    this.newRoomId = '';
+    this.roomService.addRoom();
   }
 }

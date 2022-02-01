@@ -1,6 +1,6 @@
-<div style="width: 100%">
-  <div style="margin: auto; display: block; width: fit-content">
-    <input type="number" [(ngModel)]="newRoomId" />
-    <button (click)="addNewRoom()">New Room</button>
+<div class="row mt-2">
+  <div class="form-group">
+    <span class="me-2 font-bold">Total: {{ totalRooms }}</span>
+    <button class="btn btn-warning" (click)="addNewRoom()">New Room</button>
   </div>
 </div>

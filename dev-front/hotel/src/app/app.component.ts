@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { IRoom } from './room/room.interface';
 import { RoomService } from './shared/room.service';
 
@@ -9,13 +9,16 @@ import { RoomService } from './shared/room.service';
   styleUrls: ['./app.component.scss'],
   providers: [RoomService],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   constructor(private roomService: RoomService) {}
   rooms: IRoom[] = [];
-  rooms$: BehaviorSubject<IRoom[]> = this.roomService.rooms$;
+  roomsSubscription: Subscription;
   ngOnInit(): void {
-    this.rooms$.subscribe((rooms) => {
+    this.roomsSubscription = this.roomService.rooms$.subscribe((rooms) => {
       this.rooms = rooms;
     });
+  }
+  ngOnDestroy(): void {
+    this.roomsSubscription.unsubscribe();
   }
 }

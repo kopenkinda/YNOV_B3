@@ -1,3 +1,11 @@
-<ew-angular-reception></ew-angular-reception>
-<ew-angular-room *ngFor="let room of rooms" [id]="room.id"></ew-angular-room>
-<router-outlet></router-outlet>
+<div class="container">
+  <ew-angular-reception></ew-angular-reception>
+  <div class="row my-2">
+    <ew-angular-room
+      class="col-12 col-md-4"
+      *ngFor="let room of rooms"
+      [id]="room.id"
+    ></ew-angular-room>
+  </div>
+  <router-outlet></router-outlet>
+</div>

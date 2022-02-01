@@ -1,19 +1,30 @@
-<div class="container">
-  <p>Room id: {{ id }}</p>
-  <p *ngIf="guest.trim() !== ''">Guest: {{ guest }}</p>
-  <p>
-    <ew-angular-fridge
-      [isAvailable]="isAvailable"
-      (takeABottleEvent)="onBottleCountChange($event)"
-    ></ew-angular-fridge>
-  </p>
-  <input type="text" [(ngModel)]="guest" />
+<div class="card mb-2">
+  <div class="card-header">Room id: {{ id }}</div>
+  <div class="card-body">
+    <p *ngIf="guest.trim() !== ''" class="card-text">Guest: {{ guest }}</p>
+    <p class="card-text">
+      <ew-angular-fridge
+        [isAvailable]="isAvailable"
+        (takeABottleEvent)="onBottleCountChange($event)"
+      ></ew-angular-fridge>
+    </p>
+    <div class="form-group">
+      <input type="text" [(ngModel)]="guest" class="form-control mb-5" />
+      <button
+        (click)="call()"
+        [disabled]="isDoNotDisturb"
+        class="btn btn-primary w-100 mb-2"
+      >
+        Knock-knock
+      </button>
+    </div>
+    <button
+      (click)="isDoNotDisturb = !isDoNotDisturb"
+      class="btn btn-info w-100 mb-2"
+    >
+      Switch do not disturb
+    </button>
 
-  <button (click)="call()" [disabled]="isDoNotDisturb">Knock-knock</button>
-
-  <button (click)="isDoNotDisturb = !isDoNotDisturb">
-    Switch do not disturb
-  </button>
-
-  <button (click)="onDelete()">DELETE!</button>
+    <button (click)="onDelete()" class="btn btn-danger w-100">DELETE!</button>
+  </div>
 </div>
