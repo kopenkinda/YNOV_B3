@@ -1,37 +1,34 @@
 <script>
-import { ref } from 'vue';
+import { onMounted, reactive } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
-import AppQuizItem from '../../components/quiz-item.vue';
 import API from '../../api';
+import AppQuizItem from '../../components/quiz-item.vue';
 export default {
   components: {
     RouterLink,
     AppQuizItem,
   },
   setup() {
-    const quizzes = ref([]);
+    const quizzes = reactive([]);
     const router = useRouter();
     const remove = (quiz) => {
-      quizzes.value = quizzes.value.filter((q) => q.id !== quiz.id);
       API.removeQuiz(quiz);
+      quizzes.splice(quizzes.indexOf(quiz), 1);
     };
     const edit = (quiz) => {
       router.push(`/edit-quiz/${quiz.id}`);
     };
+    onMounted(() => {
+      API.getQuizzes().then((serverQuizzes) => {
+        quizzes.splice(0, quizzes.length);
+        quizzes.push(...serverQuizzes);
+      });
+    });
     return {
       quizzes,
       remove,
       edit,
     };
-  },
-  created() {
-    API.getQuizzes()
-      .then((quizzes) => {
-        this.quizzes.value = quizzes;
-      })
-      .catch((error) => {
-        error.value = error.message;
-      });
   },
 };
 </script>
@@ -42,7 +39,8 @@ export default {
       <div class="card">
         <div class="card-body">
           <div class="card-title">Manage quizzes</div>
-          <app-quiz-item v-for="quiz in quizzes.value" :key="quiz.id" :quiz="quiz" :onedit="edit" :onremove="remove" />
+          <app-quiz-item v-for="quiz in quizzes" :key="quiz.id" :quiz="quiz" :onedit="edit" :onremove="remove" />
+          <h3 v-if="quizzes.length <= 0">No quizzes, please create one</h3>
         </div>
       </div>
     </div>

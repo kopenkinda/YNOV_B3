@@ -7,11 +7,12 @@ export default {
     RouterLink,
   },
   setup() {
-    const { loggedIn, user, logout } = useAuth();
+    const { loggedIn, user, logout, token } = useAuth();
     return {
       loggedIn,
       user,
       logout,
+      token,
     };
   },
 };
@@ -29,7 +30,7 @@ export default {
             </h3>
           </router-link>
         </li>
-        <li class="me-2">
+        <li>
           <router-link to="/scores" style="text-decoration: none">
             <span class="text-light mb-0">
               <i class="far fa-chart-bar"></i>

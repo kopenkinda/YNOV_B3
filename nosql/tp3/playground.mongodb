@@ -1,0 +1,266 @@
+use('tp3');
+
+function a1() {
+  return db.movies.aggregate([
+    {
+      $group: {
+        _id: null,
+        average: { $avg: '$imdb.rating' },
+      },
+    },
+  ]);
+}
+
+function a2() {
+  return db.movies.aggregate([
+    {
+      $group: {
+        _id: '$year',
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+}
+
+function a3() {
+  return db.movies.aggregate([
+    {
+      $group: {
+        _id: '$year',
+        count: { $sum: 1 },
+      },
+    },
+    {
+      $sort: {
+        count: -1,
+      },
+    },
+		{
+			$limit: 3,
+		},
+  ]);
+}
+
+function a4() {
+	return db.movies.find({
+		'imdb.rating': {
+				$ne: ''
+			}
+		}).sort({
+			'imdb.rating': -1,
+		}).limit(1); // .toArray()?.[0]?.title;
+}
+
+function a5() {
+	// return db.movies.find({
+	// 	genres: { $size: 2 }
+	// }).size();
+	return db.movies.find({
+		genres: { $exists: true },
+		$where: 'this.genres.length >= 3'
+	}).size();
+}
+
+function a6() {
+	return db.movies.aggregate([
+		{
+			$sort: {
+				'genres.size': 1
+			}
+		},
+		{
+			$limit: 1
+		},
+		{
+			$addFields: {
+				genres_amount: {
+					$size: '$genres'
+				}
+			}
+		},
+		{
+			$project: {
+				genres_amount: '$genres_amount'
+			}
+		}
+	]);
+}
+
+function a7() {
+	return db.movies.distinct('languages').length;
+}
+
+function a8() {
+	return db.movies.find({languages: /sign language/i}).size();
+}
+
+// Donnez le nombre de film sortis après le 19 Mai 2014
+function a9() {
+	return db.movies.find({
+		released: {
+			$gt: ISODate('2014-05-19')
+		}
+	}).size();
+}
+
+/*
+Sur les films sortis après le 19 Mai 2014 (Question 9), donnez le nombre d’entre
+    eux qui d’une durée minimum de 2h30
+*/
+function a10() {
+	return db.movies.find({
+		released: {
+			$gt: ISODate('2014-05-19')
+		},
+		runtime: {
+			$gt: 150
+		}
+	}).size();
+}
+
+function b1() {
+	return db.movies.aggregate([
+		{
+			$lookup: {
+				from: 'comments',
+				localField: '_id',
+				foreignField: 'movie_id',
+				as: 'comments'
+			}
+		},
+		{
+			$unwind: '$comments'
+		},
+	]);
+}
+
+function b2() {
+	return db.movies.aggregate([
+		{
+			$lookup: {
+				from: 'comments',
+				localField: '_id',
+				foreignField: 'movie_id',
+				as: 'comments'
+			}
+		},
+		{
+			$unwind: {
+				path: '$comments',
+			}
+		},
+		{
+			$group: {
+				_id: '$_id',
+				count: {
+					$sum: 1
+				},
+				comments: {
+					$push: '$comments'
+				}
+			}
+		},
+		{
+			$match: {
+				count: {
+					$gte: 100
+				}
+			}
+		},
+	]);
+}
+
+function c1() {
+	return db.movies.aggregate([
+		{
+			$group: {
+				_id: {
+					year: '$year',
+					genres: '$genres'
+				},
+				count: {
+					$sum: 1
+				}
+			}
+		},
+		{
+			$unwind: '$_id.genres'
+		},
+		{
+			$project: {
+				_id: 0,
+				year: '$_id.year',
+				genres: '$_id.genres',
+				count: '$count'
+			}
+		},
+		{
+			$out: 'movies_genres_by_year'
+		}
+	]);
+}
+
+function c2() {
+	return db.movies.aggregate([
+		{
+			$unwind: '$directors'
+		},
+		{
+			$group: {
+				_id: "$directors",
+				count: {
+					$sum: 1
+				},
+				victories: {
+					$sum: "$awards.wins"
+				},
+				nominations: {
+					$sum: "$awards.nominations"
+				}
+			}
+		},
+		{
+			$project: {
+				_id: 0,
+				director: '$_id',
+				count: '$count',
+				victories: '$victories',
+				nominations: '$nominations'
+			}
+		},
+	]);
+}
+
+function c3() {
+	return db.movies.aggregate([
+		{
+			$unwind: '$countries'
+		},
+		{
+			$group: {
+				_id: '$countries',
+				average: {
+					$avg: '$imdb.rating'
+				}
+			}
+		},
+	]);
+}
+
+function c4() {
+	return db.movies.aggregate([
+		{
+			$unwind: '$languages'
+		},
+		{
+			$group: {
+				_id: '$languages',
+				count: {
+					$sum: 1
+				}
+			}
+		},
+	]);
+}
+
+c3();
