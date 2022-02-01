@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RoomService } from '../shared/room.service';
 
 @Component({
   selector: 'ew-angular-room',
@@ -6,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./room.component.scss'],
 })
 export class RoomComponent implements OnInit {
-  constructor() {}
+  constructor(private roomService: RoomService) {}
 
   @Input() id: number;
 
@@ -16,6 +17,10 @@ export class RoomComponent implements OnInit {
 
   isDoNotDisturb = false;
   guest = '';
+
+  public onDelete() {
+    this.roomService.deleteRoom(this.id);
+  }
 
   public onBottleCountChange(count: number) {
     console.log(`Bottle count changed to ${count}`);
