@@ -94,15 +94,15 @@ class Page {
   get content() {
     return [
       {
-        title: 'Concepts maisons',
+        title: 'La Pyramide Elysium',
         coords: {
-          'This is the Mars': 'Pog',
+          jASON: 'BG',
           '': '',
         },
         selector: '.olympus',
       },
       {
-        title: 'Portail Héraclès',
+        title: 'Le Visage Cydonia',
         coords: {
           Latitude: '136.783441',
           Longitude: '-5.10837943',
@@ -110,7 +110,7 @@ class Page {
         selector: '.curiosity',
       },
       {
-        title: 'Valles Marineris',
+        title: 'Le Mont Olympe',
         coords: {
           Latitude: '-14.00586857',
           Longitude: '-58.5876741',
