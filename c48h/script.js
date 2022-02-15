@@ -94,15 +94,15 @@ class Page {
   get content() {
     return [
       {
-        title: 'Jason PD',
+        title: 'Concepts maisons',
         coords: {
-          Latitude: 'ta mere',
-          Longitude: 'nice woman 😍',
+          'This is the Mars': 'Pog',
+          '': '',
         },
         selector: '.olympus',
       },
       {
-        title: 'Gale Crater',
+        title: 'Portail Héraclès',
         coords: {
           Latitude: '136.783441',
           Longitude: '-5.10837943',
@@ -119,6 +119,7 @@ class Page {
       },
     ];
   }
+
   async init() {
     window.onbeforeunload = function () {
       window.scrollTo(0, 0);
@@ -129,11 +130,13 @@ class Page {
     this.setupAnimScrollTrigger();
     this.setupContentScrollTrigger();
   }
+
   setupPlugins() {
     gsap.registerPlugin(ScrollTrigger);
     gsap.registerPlugin(TextPlugin);
     gsap.registerPlugin(DrawSVGPlugin);
   }
+
   setupAnimScrollTrigger() {
     const opening = new gsap.timeline()
       .fromTo(this.camera.position, { z: 2000 }, { z: 4000, ease: 'Circ.easeOut', duration: 1.5 }, 'opening')
@@ -192,6 +195,7 @@ class Page {
         2
       );
   }
+
   setupContentScrollTrigger() {
     const onUpdate = function () {
       const target = this.targets()[0];
