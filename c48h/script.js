@@ -43,6 +43,11 @@ class Scene {
     directionalLight.position.set(2, 0, 1).normalize();
     this.scene.add(directionalLight);
 
+    const textureLoader = new THREE.TextureLoader();
+    textureLoader.load('./assets/background.jpeg', (bgTexture) => {
+      this.scene.background = bgTexture;
+    });
+
     models.forEach((x) => {
       this[x.id] = x.scene;
       this.scene.add(this[x.id]);
@@ -82,10 +87,6 @@ class Page {
     return this._scene.mars;
   }
 
-  get deimos() {
-    return this._scene.deimos;
-  }
-
   get camera() {
     return this._scene.camera;
   }
@@ -93,73 +94,28 @@ class Page {
   get content() {
     return [
       {
-        title: 'Olympus Mons',
+        title: 'Jason PD',
         coords: {
-          Latitude: '18.65275889',
-          Longitude: '-133.8025067',
+          Latitude: 'ta mere',
+          Longitude: 'nice woman 😍',
         },
-
         selector: '.olympus',
       },
-
       {
         title: 'Gale Crater',
         coords: {
           Latitude: '136.783441',
           Longitude: '-5.10837943',
         },
-
         selector: '.curiosity',
       },
-
       {
         title: 'Valles Marineris',
         coords: {
           Latitude: '-14.00586857',
           Longitude: '-58.5876741',
         },
-
         selector: '.valles',
-      },
-
-      {
-        title: 'Medusae Fossae',
-        coords: {
-          Latitude: '-2.166284249',
-          Longitude: '-164.1956286',
-        },
-
-        selector: '.medusae',
-      },
-
-      {
-        title: 'Cydonia',
-        coords: {
-          Latitude: '39.66724753',
-          Longitude: '0',
-        },
-
-        selector: '.cydonia',
-      },
-
-      {
-        title: 'Tharsis Volcanic Region',
-        coords: {
-          Latitude: '-2.623623306',
-          Longitude: '-116.7076259',
-        },
-
-        selector: '.tharsis',
-      },
-
-      {
-        title: 'Deimos',
-        coords: {
-          Distance: '23,460 km',
-          Radius: '6.2 km',
-        },
-
-        selector: '.deimos',
       },
     ];
   }
@@ -210,7 +166,12 @@ class Page {
       .set('.nav svg, .circle svg', { visibility: 'visible' })
       .to(
         this.mars.rotation,
-        { y: Math.degToRad(133.8025067 + 90), x: Math.degToRad(18.65275889), ease: 'power2.inOut', duration: 0.75 },
+        {
+          y: Math.degToRad(38.9018577),
+          x: Math.degToRad(0.337587),
+          ease: 'power2.inOut',
+          duration: 0.75,
+        },
         0
       )
       .to(this.camera.position, { z: 3000, ease: 'linear', duration: 0.75 }, 0)
@@ -229,31 +190,6 @@ class Page {
         this.mars.rotation,
         { y: Math.degToRad(58.5876741 + 90), x: Math.degToRad(-14.00586857), ease: 'power2.inOut', duration: 0.75 },
         2
-      )
-      .to(
-        this.mars.rotation,
-        { y: Math.degToRad(164.1956286 + 90), x: Math.degToRad(-2.166284249), ease: 'power2.inOut', duration: 0.75 },
-        3
-      )
-      .to(
-        this.mars.rotation,
-        { y: Math.degToRad(90), x: Math.degToRad(39.66724753), ease: 'power2.inOut', duration: 0.75 },
-        4
-      )
-      .to(
-        this.mars.rotation,
-        { y: Math.degToRad(116.7076259 + 90), x: Math.degToRad(-2.623623306), ease: 'power2.inOut', duration: 0.75 },
-        5
-      )
-      .to(this.camera.position, { z: 22000, ease: 'linear' }, 6)
-      .to(this.camera.rotation, { z: Math.degToRad(10), y: Math.degToRad(10), ease: 'power2.inOut', duration: 0.75 }, 6)
-      .set(this.deimos, { visible: true }, 6)
-      .to(this.deimos.scale, { x: 7, y: 7, z: 7, ease: 'linear', duration: 0 }, 6)
-      .fromTo(
-        this.deimos.position,
-        { x: -500, y: 0, z: 22000 },
-        { x: -170, y: 0, z: 21000, ease: 'power2.inOut', duration: 0.75 },
-        6
       );
   }
   setupContentScrollTrigger() {
@@ -300,7 +236,7 @@ class Page {
           scrub: true,
           start: 'top 75%',
           end: `bottom ${i < arr.length - 1 ? '75%' : 'bottom'}`,
-          //markers: {startColor: "green", endColor: "red", fontSize: "12px"}
+          // markers: { startColor: 'green', endColor: 'red', fontSize: '12px' },
         },
       })
         .to(`${item.selector} .title`, { text: `${item.title}`, ease: 'linear', duration: 0.25, onUpdate }, 0)
@@ -332,12 +268,6 @@ const urls = [
     id: 'mars',
     url: 'https://assets.codepen.io/1443237/Mars_1_6792.glb',
     visible: true,
-  },
-
-  {
-    id: 'deimos',
-    url: 'https://assets.codepen.io/1443237/Deimos_1_1000.glb',
-    visible: false,
   },
 ];
 
