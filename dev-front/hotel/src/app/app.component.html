@@ -1,11 +1,11 @@
 <div class="container">
   <ew-angular-reception></ew-angular-reception>
-  <div class="row my-2">
-    <ew-angular-room
-      class="col-12 col-md-4"
-      *ngFor="let room of rooms"
-      [id]="room.id"
-    ></ew-angular-room>
+  <div
+    class="w-screen snap-x overflow-x-auto flex py-8 px-[50vw] gap-4 bg-slate-200"
+  >
+    <ew-angular-card *ngFor="let room of rooms">
+      <ew-angular-room [id]="room.id"></ew-angular-room>
+    </ew-angular-card>
   </div>
   <router-outlet></router-outlet>
 </div>

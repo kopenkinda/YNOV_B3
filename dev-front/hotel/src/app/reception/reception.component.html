@@ -1,6 +1,11 @@
-<div class="row mt-2">
-  <div class="form-group">
-    <span class="me-2 font-bold">Total: {{ totalRooms }}</span>
-    <button class="btn btn-warning" (click)="addNewRoom()">New Room</button>
-  </div>
+<div
+  class="font-black first-letter:text-teal-600 text-6xl text-center p-4 bg-slate-100 w-screen"
+>
+  <span>Total: {{ totalRooms }}</span>
+  <button
+    class="ml-4 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded text-center"
+    (click)="addNewRoom()"
+  >
+    New Room
+  </button>
 </div>

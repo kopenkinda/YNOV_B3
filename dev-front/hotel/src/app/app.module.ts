@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { RoomComponent } from './room/room.component';
 import { FridgeComponent } from './fridge/fridge.component';
 import { ReceptionComponent } from './reception/reception.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { ReceptionComponent } from './reception/reception.component';
     FridgeComponent,
     ReceptionComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, SharedModule],
   providers: [],
   bootstrap: [AppComponent],
 })

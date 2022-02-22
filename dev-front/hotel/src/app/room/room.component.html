@@ -1,30 +1,42 @@
-<div class="card mb-2">
-  <div class="card-header">Room id: {{ id }}</div>
-  <div class="card-body">
-    <p *ngIf="guest.trim() !== ''" class="card-text">Guest: {{ guest }}</p>
-    <p class="card-text">
+<div>
+  <div class="text-lg font-black">Room id: {{ id }}</div>
+  <div>
+    <p *ngIf="guest.trim() !== ''" class="py-2 text-teal-800">
+      Guest: {{ guest }}
+    </p>
+    <p>
       <ew-angular-fridge
         [isAvailable]="isAvailable"
         (takeABottleEvent)="onBottleCountChange($event)"
       ></ew-angular-fridge>
     </p>
-    <div class="form-group">
-      <input type="text" [(ngModel)]="guest" class="form-control mb-5" />
+    <div class="my-4">
+      <input
+        class="w-full p-2 border border-teal-500 rounded-lg mb-2"
+        type="text"
+        [(ngModel)]="guest"
+      />
       <button
+        class="bg-teal-500 w-full hover:bg-teal-700 text-white font-bold py-2 px-4 rounded text-center"
         (click)="call()"
         [disabled]="isDoNotDisturb"
-        class="btn btn-primary w-100 mb-2"
       >
         Knock-knock
       </button>
     </div>
-    <button
-      (click)="isDoNotDisturb = !isDoNotDisturb"
-      class="btn btn-info w-100 mb-2"
-    >
-      Switch do not disturb
-    </button>
-
-    <button (click)="onDelete()" class="btn btn-danger w-100">DELETE!</button>
+    <div class="flex w-full justify-between">
+      <button
+        class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
+        (click)="isDoNotDisturb = !isDoNotDisturb"
+      >
+        Switch do not disturb
+      </button>
+      <button
+        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+        (click)="onDelete()"
+      >
+        DELETE!
+      </button>
+    </div>
   </div>
 </div>
