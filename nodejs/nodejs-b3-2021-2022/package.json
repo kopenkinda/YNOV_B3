@@ -1,0 +1,9 @@
+{
+  "name": "nodejs-b3-2021-2022",
+  "version": "1.0.0",
+  "module": "",
+  "license": "MIT",
+  "dependencies": {
+    "luxon": "^2.3.0"
+  }
+}
