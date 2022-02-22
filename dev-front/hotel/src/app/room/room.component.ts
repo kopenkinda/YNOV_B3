@@ -4,7 +4,7 @@ import { RoomService } from '../shared/room.service';
 @Component({
   selector: 'ew-angular-room',
   templateUrl: './room.component.html',
-  styleUrls: ['./room.component.scss'],
+  styleUrls: [],
 })
 export class RoomComponent implements OnInit {
   constructor(private roomService: RoomService) {}

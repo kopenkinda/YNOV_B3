@@ -6,7 +6,7 @@ import { RoomService } from './shared/room.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: [],
   providers: [RoomService],
 })
 export class AppComponent implements OnInit, OnDestroy {

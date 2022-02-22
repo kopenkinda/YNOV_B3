@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'ew-angular-fridge',
   templateUrl: './fridge.component.html',
-  styleUrls: ['./fridge.component.scss'],
+  styleUrls: [],
 })
 export class FridgeComponent implements OnInit {
   constructor() {}

@@ -5,7 +5,7 @@ import { RoomService } from '../shared/room.service';
 @Component({
   selector: 'ew-angular-reception',
   templateUrl: './reception.component.html',
-  styleUrls: ['./reception.component.scss'],
+  styleUrls: [],
 })
 export class ReceptionComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}

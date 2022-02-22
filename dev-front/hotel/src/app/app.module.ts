@@ -8,7 +8,12 @@ import { FridgeComponent } from './fridge/fridge.component';
 import { ReceptionComponent } from './reception/reception.component';
 
 @NgModule({
-  declarations: [AppComponent, RoomComponent, FridgeComponent, ReceptionComponent],
+  declarations: [
+    AppComponent,
+    RoomComponent,
+    FridgeComponent,
+    ReceptionComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
