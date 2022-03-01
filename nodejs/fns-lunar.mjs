@@ -14,19 +14,47 @@ export const birthdayDaysWithPhase = async (
   const d = luxon.DateTime.fromJSDate(fromDate);
   const thisYear = luxon.DateTime.now().year;
 
-  const result = [];
+  // const result = [];
+  // for (let i = d.year; i <= thisYear; i++) {
+  //   const promise = new Promise(async (resolve, reject) => {
+  //     try {
+  //       const yearsDate = d.plus({ year: i - d.year });
+  //       const url = API_URL(cityName, yearsDate.toFormat("yyyy-MM-dd"));
+  //       const phase = await fetch(url)
+  //         .then((r) => r.json())
+  //         .then(({ astronomy }) => astronomy.astro.moon_phase);
+  //       resolve({
+  //         year: yearsDate.year,
+  //         day: yearsDate.weekdayLong,
+  //         moonPhase: phase,
+  //       });
+  //     } catch (error) {
+  //       reject(error);
+  //     }
+  //   });
+  //   result.push(promise);
+  // }
+  // return Promise.all(result);
 
-  for (let i = d.year; i <= thisYear; i++) {
-    const yearsDate = d.plus({ year: i - d.year });
-    const url = API_URL(cityName, yearsDate.toFormat("yyyy-MM-dd"));
-    const phase = await fetch(url)
-      .then((r) => r.json())
-      .then(({ astronomy }) => astronomy.astro.moon_phase);
-    result.push({
-      year: yearsDate.year,
-      day: yearsDate.weekdayLong,
-      moonPhase: phase,
-    });
-  }
-  return result;
+  return Promise.all(
+    Array.from({ length: thisYear - d.year + 1 }, (_, i) => {
+      const p = new Promise(async (resolve, reject) => {
+        try {
+          const yearsDate = d.plus({ year: i });
+          const url = API_URL(cityName, yearsDate.toFormat("yyyy-MM-dd"));
+          const phase = await fetch(url)
+            .then((r) => r.json())
+            .then(({ astronomy }) => astronomy.astro.moon_phase);
+          return resolve({
+            year: yearsDate.year,
+            day: yearsDate.weekdayLong,
+            moonPhase: phase,
+          });
+        } catch (error) {
+          reject(error);
+        }
+      });
+      return p;
+    })
+  );
 };
