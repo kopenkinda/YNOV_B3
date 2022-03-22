@@ -1,6 +1,7 @@
 import { extractFilters } from "./match.service.mjs";
 import { sortByKey } from "../utils.mjs";
 import { db } from "./match.db.mjs";
+import { HttpError } from "../HttpError.mjs";
 
 export const getPaginatedMatches = (req, res, _next) => {
   const filters = extractFilters(req);

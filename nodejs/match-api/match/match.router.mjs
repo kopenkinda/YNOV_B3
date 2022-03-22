@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { unsupportedMethod } from "../global.middleware.mjs";
 import {
   createMatch,
   deleteMatch,
@@ -12,10 +13,12 @@ import { verifyMatchDto } from "./match.middlewares.mjs";
 const router = Router();
 
 router.get("/", getPaginatedMatches);
-router.get("/:id", getMatchesById);
 router.post("/", verifyMatchDto, createMatch);
+
+router.get("/:id", getMatchesById);
 router.put("/:id", verifyMatchDto, updateWholeMatch);
 router.patch("/:id", verifyMatchDto, updatePartialMatch);
 router.delete("/:id", deleteMatch);
+router.all("*", unsupportedMethod);
 
 export default router;
