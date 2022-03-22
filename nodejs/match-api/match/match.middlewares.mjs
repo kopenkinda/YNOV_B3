@@ -14,8 +14,20 @@ export const verifyMatchDto = (req, res, next) => {
     if (team2 !== undefined && !(typeof team2 === "string")) {
       return next(new HttpError("Team2 should be a string", 400));
     }
-    if (score !== undefined && !(Array.isArray(score) && score.length === 2)) {
-      return next(new HttpError("Score should be an array of length 2", 400));
+    if (
+      score !== undefined &&
+      !(
+        Array.isArray(score) &&
+        score.length === 2 &&
+        score.every(Number.isInteger)
+      )
+    ) {
+      return next(
+        new HttpError(
+          "Score should be an array of length 2 with int's as values",
+          400
+        )
+      );
     }
     return next();
   }
@@ -25,10 +37,24 @@ export const verifyMatchDto = (req, res, next) => {
     score === undefined ||
     team2 === undefined
   ) {
-    return next(new HttpError("Bad request", 400));
+    return next(new HttpError("Bad request, some fields are missing", 400));
   }
-  if (date === "" || team1 === "" || score === "" || team2 === "") {
+  if (team1 === "" || team2 === "") {
     return next(new HttpError("Fields cannot be empty", 400));
+  }
+  if (
+    !(
+      Array.isArray(score) &&
+      score.length === 2 &&
+      score.every(Number.isInteger)
+    )
+  ) {
+    return next(
+      new HttpError(
+        "Score should be an array of length 2 with int's as values",
+        400
+      )
+    );
   }
   if (!luxon.DateTime.fromISO(date).isValid) {
     return next(new HttpError("Invalid date format", 400));
