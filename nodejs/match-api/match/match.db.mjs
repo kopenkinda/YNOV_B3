@@ -5,6 +5,7 @@ const offset = 1000 * 60 * 60 * 24;
 
 export const db = [
   new Match(new Date(Date.now() - ++day * offset), "Team1_1", [1, 1], "Team2_1"),
+  new Match(new Date(Date.now() - ++day * offset), "Team1_1", [1, 1], "Team2_2"),
   new Match(new Date(Date.now() - ++day * offset), "Team1_2", [2, 1], "Team2_2"),
   new Match(new Date(Date.now() - ++day * offset), "Team1_3", [3, 1], "Team2_3"),
   new Match(new Date(Date.now() - ++day * offset), "Team1_4", [4, 1], "Team2_4"),

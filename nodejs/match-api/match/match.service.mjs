@@ -1,6 +1,12 @@
 export const extractFilters = (req) => {
-  const { sort, page, size } = req.query;
+  const { sort, page, size, team } = req.query;
   const filters = {};
+  if (team) {
+    filters.team = team;
+  }
+  if (!filters.team) {
+    filters.team = "";
+  }
   if (sort) {
     filters.sort = sort;
   }

@@ -6,13 +6,19 @@ import { Match } from "./Match.entity.mjs";
 
 export const getPaginatedMatches = (req, res, _next) => {
   const filters = extractFilters(req);
-  const paginatedResults = sortByKey(db, filters.sort).slice(
+  const filteredByTeam = db.filter((match) => {
+    if (filters.team !== "") {
+      return match.team1 === filters.team || match.team2 === filters.team;
+    }
+    return true;
+  });
+  const sortedMatches = sortByKey(filteredByTeam, filters.sort);
+  const paginatedResults = sortedMatches.slice(
     filters.size * filters.page,
     filters.size * filters.page + filters.size
   );
-  const sortedResults = paginatedResults;
   res.header("X-Total-Count", db.length);
-  return res.json(sortedResults);
+  return res.json(paginatedResults);
 };
 
 export const getMatchesById = (req, res, next) => {

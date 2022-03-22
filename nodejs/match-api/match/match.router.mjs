@@ -19,6 +19,7 @@ router.get("/:id", getMatchesById);
 router.put("/:id", verifyMatchDto, updateWholeMatch);
 router.patch("/:id", verifyMatchDto, updatePartialMatch);
 router.delete("/:id", deleteMatch);
+
 router.all("*", unsupportedMethod);
 
 export default router;
