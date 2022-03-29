@@ -1,53 +1,45 @@
 import { ResourceNotFoundError } from "../common/repository-error.js";
-
-let id = 0;
-const items = [
-  {
-    id: ++id,
-    rating: 5,
-    content: "Awesome 👏👏👏",
-  },
-  {
-    id: ++id,
-    rating: 9,
-    content: "Bad 👎👎👎",
-  },
-];
+import { CommentModel } from "./comment.model.js";
 
 class CommentService {
-  findAll = async () => items;
+  findAll = async () => CommentModel.findAll();
 
   findById = async (id) => {
-    const itemToGet = items.find((item) => item.id === id);
-    if (itemToGet) {
-      return itemToGet;
+    const found = await CommentModel.findOne({ where: { id } });
+    if (found != null) {
+      return found;
     }
     throw new ResourceNotFoundError();
   };
 
   create = async (item) => {
     const itemToCreate = {
-      id: ++id,
       rating: item.rating,
       content: item.content,
     };
-    items.push(itemToCreate);
-    return itemToCreate;
+    const created = await CommentModel.create(itemToCreate);
+    return created;
   };
 
   patch = async (id, item) => {
+    const ensureRating = item.rating !== undefined && { rating: item.rating };
+    const ensureContent = item.content !== undefined && {
+      content: item.content,
+    };
     const itemWithPatches = {
       id,
-      ...(item.rating !== undefined && { rating: item.rating }),
-      ...(item.content !== undefined && { content: item.content }),
+      ...ensureRating,
+      ...ensureContent,
     };
-    const index = items.findIndex((comment) => comment.id === id);
-    if (index < -1) {
+    const found = await CommentModel.findOne({ id });
+    if (found == null) {
       throw new ResourceNotFoundError();
     } else {
-      const itemToUpdate = { ...items[index], ...itemWithPatches };
-      items.splice(index, 1, itemToUpdate);
-      return itemToUpdate;
+      Object.keys(itemWithPatches).forEach((key) => {
+        found[key] = itemWithPatches[key];
+      });
+      const saved = await found.save();
+      return saved;
     }
   };
 
@@ -57,23 +49,25 @@ class CommentService {
       rating: item.rating,
       content: item.content,
     };
-    const index = items.findIndex(
-      (comment) => comment.id === commentToUpdate.id
-    );
-    if (index < -1) {
+
+    const found = await CommentModel.findOne({ id });
+    if (found == null) {
       throw new ResourceNotFoundError();
     } else {
-      items.splice(index, 1, commentToUpdate);
-      return commentToUpdate;
+      Object.keys(commentToUpdate).forEach((key) => {
+        found[key] = commentToUpdate[key];
+      });
+      const saved = await found.save();
+      return saved;
     }
   };
 
   delete = async (id) => {
-    const index = items.findIndex((comment) => comment.id === id);
-    if (index < -1) {
+    const found = await CommentModel.findOne({ where: { id } });
+    if (found == null) {
       throw new ResourceNotFoundError();
     } else {
-      items.splice(index, 1);
+      await found.destroy();
     }
   };
 }
