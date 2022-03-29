@@ -1,0 +1,30 @@
+{
+  "name": "ingesup-b3-nodejs-2021-2022",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:debug": "node --inspect src/index.js",
+    "start:dev": "nodemon --inspect src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/ynov-toulouse-ingesup/nodejs-b3-2021-2022.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/ynov-toulouse-ingesup/nodejs-b3-2021-2022/issues"
+  },
+  "homepage": "https://gitlab.com/ynov-toulouse-ingesup/nodejs-b3-2021-2022#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
