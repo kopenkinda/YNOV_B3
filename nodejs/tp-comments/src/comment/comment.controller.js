@@ -1,17 +1,17 @@
-import { commentService } from './comment.service.js';
-import { ResourceNotFoundError } from '../common/repository-error.js';
+import { ResourceNotFoundError } from "../common/repository-error.js";
+import { commentService } from "./comment.service.js";
 
 class CommentController {
-  findAll = (request, response) => {
-    const items = commentService.findAll();
-    response.header('x-total-count', `${items.length}`);
+  findAll = async (request, response) => {
+    const items = await commentService.findAll();
+    response.header("x-total-count", `${items.length}`);
     response.json(items);
   };
 
-  find = (request, response, next) => {
+  find = async (request, response, next) => {
     const id = request.params.id;
     try {
-      const item = commentService.findById(id);
+      const item = await commentService.findById(id);
       response.json(item);
     } catch (error) {
       if (error instanceof ResourceNotFoundError) {
@@ -22,16 +22,16 @@ class CommentController {
     }
   };
 
-  create = (request, response) => {
-    const item = commentService.create(request.body);
+  create = async (request, response) => {
+    const item = await commentService.create(request.body);
     response.status(201);
     response.json(item);
   };
 
-  patch = (request, response, next) => {
+  patch = async (request, response, next) => {
     const id = request.params.id;
     try {
-      const item = commentService.patch(id, request.body);
+      const item = await commentService.patch(id, request.body);
       response.json(item);
     } catch (error) {
       if (error instanceof ResourceNotFoundError) {
@@ -42,10 +42,10 @@ class CommentController {
     }
   };
 
-  set = (request, response, next) => {
+  set = async (request, response, next) => {
     const id = request.params.id;
     try {
-      const item = commentService.set(id, request.body);
+      const item = await commentService.set(id, request.body);
       response.json(item);
     } catch (error) {
       if (error instanceof ResourceNotFoundError) {
@@ -56,10 +56,10 @@ class CommentController {
     }
   };
 
-  delete = (request, response, next) => {
+  delete = async (request, response, next) => {
     const id = request.params.id;
     try {
-      commentService.delete(id);
+      await commentService.delete(id);
       response.status(204);
       response.json();
     } catch (error) {
