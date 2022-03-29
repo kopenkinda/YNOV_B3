@@ -1,10 +1,10 @@
-import { extractFilters } from "./match.service.mjs";
+import { HttpError } from "../HttpError.mjs";
 import { sortByKey } from "../utils.mjs";
 import { db } from "./match.db.mjs";
-import { HttpError } from "../HttpError.mjs";
 import { Match } from "./Match.entity.mjs";
+import { extractFilters } from "./match.service.mjs";
 
-export const getPaginatedMatches = (req, res, _next) => {
+export const getPaginatedMatches = async (req, res, _next) => {
   const filters = extractFilters(req);
   const filteredByTeam = db.filter((match) => {
     if (filters.team !== "") {
@@ -21,7 +21,7 @@ export const getPaginatedMatches = (req, res, _next) => {
   return res.json(paginatedResults);
 };
 
-export const getMatchesById = (req, res, next) => {
+export const getMatchesById = async (req, res, next) => {
   const match = db.find((m) => m.id === +req.params.id);
   if (!match) {
     return next(new HttpError("Not found", 404));
@@ -29,14 +29,14 @@ export const getMatchesById = (req, res, next) => {
   return res.json(match);
 };
 
-export const createMatch = (req, res, _next) => {
+export const createMatch = async (req, res, _next) => {
   const { date, team1, score, team2 } = req.body;
   const match = new Match(date, team1, score, team2);
   db.push(match);
   return res.json(match);
 };
 
-export const updateWholeMatch = (req, res, next) => {
+export const updateWholeMatch = async (req, res, next) => {
   const match = db.find((m) => m.id === +req.params.id);
   if (!match) {
     return next(new HttpError("Not found", 404));
@@ -49,7 +49,7 @@ export const updateWholeMatch = (req, res, next) => {
   return res.json(match);
 };
 
-export const updatePartialMatch = (req, res, next) => {
+export const updatePartialMatch = async (req, res, next) => {
   const match = db.find((m) => m.id === +req.params.id);
   if (!match) {
     return next(new HttpError("Not found", 404));
@@ -62,7 +62,7 @@ export const updatePartialMatch = (req, res, next) => {
   return res.json(match);
 };
 
-export const deleteMatch = (req, res, next) => {
+export const deleteMatch = async (req, res, next) => {
   const match = db.find((m) => m.id === +req.params.id);
   if (!match) {
     return next(new HttpError("Not found", 404));
