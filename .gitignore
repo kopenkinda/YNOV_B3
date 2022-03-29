@@ -8,3 +8,4 @@ dev-mobile/tp-final-meteo/
 devops/tp-gitlab-jenkins/
 mentor-stuff/b2-php/wordpress/
 node_modules/
+.DS_Store
