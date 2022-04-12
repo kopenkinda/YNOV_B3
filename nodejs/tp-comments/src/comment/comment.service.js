@@ -1,13 +1,25 @@
+import luxon from "luxon";
 import { ResourceNotFoundError } from "../common/repository-error.js";
 import { CommentModel } from "./comment.model.js";
 
 class CommentService {
-  findAll = async () => CommentModel.findAll();
+  findAll = async () => {
+    const comments = await CommentModel.findAll();
+    return comments.map((comment) => ({
+      ...comment.toJSON(),
+      dateAgo: luxon.DateTime.fromJSDate(comment.date).diffNow().toObject(),
+      dateAgo2: luxon.DateTime.fromJSDate(comment.date).toRelative(),
+    }));
+  };
 
   findById = async (id) => {
     const found = await CommentModel.findOne({ where: { id } });
     if (found != null) {
-      return found;
+      return {
+        ...found.toJSON(),
+        dateAgo: luxon.DateTime.fromJSDate(found.date).diffNow().toObject(),
+        dateAgo2: luxon.DateTime.fromJSDate(found.date).toRelative(),
+      };
     }
     throw new ResourceNotFoundError();
   };

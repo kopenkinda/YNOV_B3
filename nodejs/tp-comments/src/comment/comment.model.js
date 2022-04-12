@@ -6,6 +6,10 @@ CommentModel.init(
   {
     rating: DataTypes.INTEGER,
     content: DataTypes.TEXT,
+    date: {
+      type: DataTypes.DATE,
+      defaultValue: new Date(),
+    },
   },
   { sequelize, modelName: "comment" }
 );
