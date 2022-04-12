@@ -1,3 +1,4 @@
+// @ts-check
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../common/orm.config.js";
 
