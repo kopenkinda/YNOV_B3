@@ -26,10 +26,10 @@ export const userService = new (class {
     return user;
   };
 
-  getHashedPassword(password) {
+  getHashedPassword = (password) => {
     return crypto
       .createHash("sha256")
       .update(password + process.env.PASSWORD_PEPPER)
       .digest("hex");
-  }
+  };
 })();

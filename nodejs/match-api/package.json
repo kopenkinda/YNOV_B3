@@ -1,11 +1,20 @@
 {
-  "name": "match-api",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "type": "module",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.3",
     "luxon": "^2.3.1"
-  }
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4",
+    "sequelize": "^5.22.0"
+  },
+  "license": "MIT",
+  "main": "server.mjs",
+  "name": "match-api",
+  "scripts": {
+    "start": "node server.mjs",
+    "start:dev": "nodemon server.mjs"
+  },
+  "type": "module",
+  "version": "1.0.0"
 }
