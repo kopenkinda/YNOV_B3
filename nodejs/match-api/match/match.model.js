@@ -17,7 +17,7 @@ MatchModel.addHook("afterFind", (matches) => {
     matches.forEach((match) => {
       match.score = match.score.split("|");
     });
-  } else {
+  } else if (matches !== null) {
     matches.score = matches.score.split("|");
   }
 });
